@@ -4,11 +4,13 @@
     flex-direction: column;
     align-items: center;
     margin-top: 20px;
+    position: relative;
 }
 
+/* Light earthy green */
 .notification-bar {
     width: 100%;
-    background-color: #f4f6f9;
+    background-color: #e0e7e4;
     padding: 20px;
     margin-bottom: 10px;
     display: flex;
@@ -23,6 +25,7 @@
     font-size: 16px;
     font-weight: 600;
     margin-bottom: 10px;
+    color: #2c5f2d; /* Dark green */
 }
 
 /* Historical Data Section */
@@ -36,7 +39,7 @@
 }
 
 .date-slider-btn {
-    background-color: #2d9cdb;
+    background-color: #8db596; /* Muted green */
     color: white;
     border: none;
     padding: 8px 12px;
@@ -46,7 +49,7 @@
 }
 
 .date-slider-btn:hover {
-    background-color: #217bb3;
+    background-color: #617A55; /* Darker green on hover */
 }
 
 /* Toggle Options */
@@ -61,21 +64,35 @@
     border-radius: 4px;
     border: 1px solid #ddd;
     cursor: pointer;
+    background-color: #e2d5c3; /* Light earthy brown */
 }
 
 /* Popup Styling */
 .popup {
     position: absolute;
-    top: 20%;
+    top: 55%; /* Move popup closer to the map */
     left: 50%;
     transform: translate(-50%, -50%);
     max-width: 400px;
+    background-color: #ffffff;
+    border-radius: 8px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+    padding: 20px;
     z-index: 1000;
+    margin-bottom: 20px;
+}
+
+.popup-heading {
+    font-size: 18px;
+    font-weight: bold;
+    color: #2c5f2d; /* Dark green */
+    margin-bottom: 15px;
 }
 
 .popup label {
     display: block;
     margin-top: 10px;
+    color: #2c5f2d;
 }
 
 .popup input[type="text"],
@@ -86,21 +103,31 @@
     margin-top: 5px;
     border: 1px solid #ddd;
     border-radius: 4px;
+    margin-bottom: 10px;
 }
 
 .submit-btn {
-    margin-top: 15px;
-    background-color: #28a745;
+    background-color: #4c7c4c; /* Deep earthy green */
     color: white;
     border: none;
     padding: 10px 15px;
     cursor: pointer;
     border-radius: 4px;
     transition: background-color 0.3s ease;
+    margin-top: 15px;
 }
 
 .submit-btn:hover {
-    background-color: #218838;
+    background-color: #3d6643; /* Darker green on hover */
+}
+
+/* Fix spacing when checkbox is not selected */
+.popup input[type="checkbox"] {
+    margin-right: 10px;
+}
+
+.popup input[type="checkbox"] + label + button {
+    margin-top: 20px; /* Adds space when checkbox is not selected */
 }
 
 /* Map Wrapper */

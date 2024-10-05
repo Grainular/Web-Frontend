@@ -1,4 +1,5 @@
 import Map from "./Map"
+import '../css/MapStyles.css'; // Custom styles
 
 export default function Homepage() {
     return (

@@ -1,4 +1,5 @@
 import {Link} from "react-router-dom";
+import '../css/MapStyles.css'; // Custom styles
 
 export default function Header() {
     return (
