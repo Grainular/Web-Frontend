@@ -7,11 +7,11 @@ To run the project locally, follow these steps:
 
 
 ## The Team
-Jasper Grant (@JasperGrant)
-Aniq Elahi (@Aniq-byte)
-Paras Nath Seth (@parass05)
-Christian Simoneau (@ChrisSimoneau)
-Aishik Sanyal (@Xcellect)
+- Jasper Grant (@JasperGrant)
+- Aniq Elahi (@Aniq-byte)
+- Paras Nath Seth (@parass05)
+- Christian Simoneau (@ChrisSimoneau)
+- Aishik Sanyal (@Xcellect)
 
 
 ## TODO: References
