@@ -4,6 +4,7 @@
     flex-direction: column;
     align-items: center;
     margin-top: 20px;
+    position: relative;
 }
 
 .coordinates-input {
@@ -31,30 +32,71 @@
     background-color: #617A55;
 }
 
-/* Notification Bar */
+/* Light earthy green */
 .notification-bar {
+    width: 100%;
+    background-color: #e0e7e4;
+    padding: 20px;
+    margin-bottom: 10px;
     display: flex;
     justify-content: space-between;
-    width: 100%;
-    margin-bottom: 20px;
+    align-items: center;
+    border-radius: 8px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
 }
 
-.historical-dates, .toggle-options {
-    margin-right: 20px;
+/* Section Headings */
+.section-heading {
+    font-size: 16px;
+    font-weight: 600;
+    margin-bottom: 10px;
+    color: #2c5f2d; /* Dark green */
+}
+
+
+/* Historical Data Section */
+.historical-dates {
+    flex: 1;
+}
+
+.date-slider {
+    display: flex;
+    gap: 10px;
 }
 
 .date-slider-btn {
-    background-color: #e2d5c3;
+    background-color: #8db596; /* Muted green */
+    color: white;
     border: none;
-    margin: 5px;
-    padding: 10px;
+    padding: 8px 12px;
+    border-radius: 4px;
     cursor: pointer;
-    border-radius: 5px;
+    transition: background-color 0.2s ease;
 }
 
-/* Popup Styles */
+.date-slider-btn:hover {
+    background-color: #617A55; /* Darker green on hover */
+}
+
+/* Toggle Options */
+.toggle-options {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+}
+
+.toggle-select {
+    padding: 8px;
+    border-radius: 4px;
+    border: 1px solid #ddd;
+    cursor: pointer;
+    background-color: #e2d5c3; /* Light earthy brown */
+}
+
+/* Popup Styling */
 .popup {
-    position: fixed;
+    position: absolute;
+    width: 65vw;
     top: 55%;
     left: 50%;
     transform: translate(-50%, -50%);
@@ -62,7 +104,7 @@
     border-radius: 8px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
     padding: 20px;
-    z-index: 100;
+    z-index: 1000;
 }
 
 .popup-close-btn {
@@ -76,19 +118,26 @@
 }
 
 .popup-heading {
-    color: #2c5f2d;
+    font-size: 18px;
+    font-weight: bold;
+    color: #2c5f2d; /* Dark green */
+    margin-bottom: 15px;
 }
 
 .popup label {
     display: block;
     margin-top: 10px;
+    color: #2c5f2d;
     font-weight: bold;
 }
 
 .popup input[type="text"], .popup select {
-    margin-top: 5px;
-    margin-bottom: 10px;
     width: 100%;
+    padding: 8px;
+    margin-top: 5px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    margin-bottom: 10px;
     padding: 5px;
     border: 1px solid #617A55;
     border-radius: 5px;
