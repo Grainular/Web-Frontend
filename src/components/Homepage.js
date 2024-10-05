@@ -1,5 +1,4 @@
-import Map from "./Map"
-import '../css/MapStyles.css'; // Custom styles
+import Map from "./Map" 
 
 export default function Homepage() {
     return (
