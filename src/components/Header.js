@@ -6,7 +6,7 @@ export default function Header() {
         <nav className="flex items-center flex-wrap bg-main-green p-6 shadow-md">
             <div className="flex items-center flex-shrink-0 text-white mr-6">
                 <span className="font-semibold md:text-xl tracking-tight sm:text-sm text-logo-brown">
-                    SatWatch
+                    Grainular
                 </span>
             </div>
             <div className="flex items-center flex-shrink-0 text-white mr-6 justify-between space-x-6">
