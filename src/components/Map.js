@@ -207,7 +207,7 @@ export default function Map() {
                             <input type="date" name="selectedDate" onChange={handleInputChange} />
                         </div>
                     )}
-
+                    <br></br>
                     <button className="submit-btn" onClick={handleSubmit}>Submit</button>
                 </div>
             )}
