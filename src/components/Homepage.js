@@ -19,7 +19,8 @@ export default function Homepage() {
                 <div className="max-w-4xl mx-auto">
                     <h2 className="text-2xl font-semibold mb-4">How to Use</h2>
                     <p className="mb-6">
-                        Drop a pin on the location where you'd like to track LANDSAT passes or enter your coordinates directly. Set your notification preferences to stay informed on the next satellite pass.
+                        <b>Step 1.</b> Drop a pin on the location where you'd like to track LANDSAT passes or enter your coordinates directly.<br/> 
+                        <b>Step 2.</b> Click <i>'Add Notification'</i> and set your notification preferences to stay informed on the next satellite pass!
                     </p>
                 </div>
             </section>

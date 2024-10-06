@@ -41,7 +41,6 @@ export default function Map() {
     const onMapClick = (e) => {
         setMarker({ lat: e.latLng.lat(), lng: e.latLng.lng() });
         setPopupData({ ...popupData, latitude: e.latLng.lat(), longitude: e.latLng.lng() });
-        setShowPopup(true);  // Show the popup when marker is dropped
     };
 
     const handleInputChange = (e) => {
