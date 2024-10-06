@@ -66,6 +66,22 @@ export default function Map() {
         }
         // overlayImages();  // TODO: Overlay Vegetation or Thermal images based on user choice
         setShowPopup(false);  // Close popup after submit
+        handleReset(); // Reset coordinates after a notification is added
+    };
+
+    // Resets the latitude and longitude fields 
+    const handleReset = () => {
+        setPopupData({
+            ...popupData,
+            latitude: '',
+            longitude: ''
+        });
+        
+        // Reset the marker and pan the map back to the default center
+        setMarker(null);
+        if (map) {
+            map.panTo(center);  // Pan back to the default center
+        }
     };
 
     // const overlayImages = () => {
@@ -115,6 +131,7 @@ export default function Map() {
                     onChange={handleInputChange}
                 />
                 <button className="latlong-submit-btn" onClick={handleLatLongSubmit}>Add Notification</button>
+                <button className="reset-btn" onClick={handleReset}>Reset</button>
             </div>
 
             {/* Notification Bar */}
@@ -198,14 +215,14 @@ export default function Map() {
                         <option value="SAT Phone">SAT Phone</option>
                     </select>
 
+                    <label>Phone Number (For Notifications via SMS)</label>
+                    <input type="text" name="phoneNumber" value={popupData.phoneNumber} onChange={handleInputChange} />
+                    
                     <label>Provider</label>
                     <select name="provider" value={popupData.provider} onChange={handleInputChange}>
                         <option value="Verizon">Verizon</option>
                         <option value="AT&T">AT&T</option>
                     </select>
-
-                    <label>Phone Number</label>
-                    <input type="text" name="phoneNumber" value={popupData.phoneNumber} onChange={handleInputChange} />
 
                     <label>Show Historical Data?</label>
                     <input

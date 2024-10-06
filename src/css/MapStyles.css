@@ -162,11 +162,26 @@
     border-radius: 5px;
     margin-top: 15px;
 }
-
 .submit-btn:hover,
 .latlong-submit-btn:hover {
     background-color: #3d6643; /* Darker green on hover */
 }
+
+/* Reset Button */
+.reset-btn {
+    background-color: #546155;
+    border: none;
+    padding: 10px 20px;
+    color: white;
+    cursor: pointer;
+    border-radius: 5px;
+    margin-top: 15px;
+    margin-left: 5px;
+}
+.reset-btn:hover {
+    background-color: #748375; /* Darker green on hover */
+}
+
 
 /* Map Wrapper */
 .map-wrapper {
