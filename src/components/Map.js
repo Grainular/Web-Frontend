@@ -47,6 +47,18 @@ export default function Map() {
     const handleInputChange = (e) => {
         const { name, value } = e.target;
         setPopupData({ ...popupData, [name]: value });
+
+        // Automatically pans the map when latitude or longitude changes
+        if (name === 'latitude' || name === 'longitude') {
+            const lat = name === 'latitude' ? parseFloat(value) : parseFloat(popupData.latitude);
+            const lng = name === 'longitude' ? parseFloat(value) : parseFloat(popupData.longitude);
+
+            // Pan the map to the new coordinates. Then update the marker position
+            if (map && !isNaN(lat) && !isNaN(lng)) {
+                map.panTo({ lat, lng });
+                setMarker({ lat, lng });
+            }
+        }
     };
 
     const handleSubmit = () => {
@@ -81,21 +93,7 @@ export default function Map() {
     };
 
     const handleLatLongSubmit = () => {
-        const lat = parseFloat(popupData.latitude);
-        const lng = parseFloat(popupData.longitude);
-    
-        if (isNaN(lat) || isNaN(lng)) {
-            alert("Please enter valid latitude and longitude coordinates.");
-            return;
-        }
-        
-        // Pan the map to the new coordinates
-        setMarker({ lat, lng });
-        if (map) {
-            map.panTo({ lat, lng });
-        }
-    
-        // Open the popup
+        setMarker({ lat: parseFloat(popupData.latitude), lng: parseFloat(popupData.longitude) });
         setShowPopup(true);
     };
 
