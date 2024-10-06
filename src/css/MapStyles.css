@@ -72,10 +72,9 @@
 
 .toggle-select {
     padding: 8px;
-    border-radius: 4px;
+    border-radius: 5px;
     border: 1px solid #ddd;
     cursor: pointer;
-    background-color: #e2d5c3; /* Light earthy brown */
 }
 
 /* Popup Styling */
