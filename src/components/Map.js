@@ -103,7 +103,7 @@ export default function Map() {
                     value={popupData.longitude}
                     onChange={handleInputChange}
                 />
-                <button className="latlong-submit-btn" onClick={handleLatLongSubmit}>Submit</button>
+                <button className="latlong-submit-btn" onClick={handleLatLongSubmit}>Add Notification</button>
             </div>
 
             {/* Notification Bar */}
