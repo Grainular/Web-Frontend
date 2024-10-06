@@ -81,7 +81,21 @@ export default function Map() {
     };
 
     const handleLatLongSubmit = () => {
-        setMarker({ lat: parseFloat(popupData.latitude), lng: parseFloat(popupData.longitude) });
+        const lat = parseFloat(popupData.latitude);
+        const lng = parseFloat(popupData.longitude);
+    
+        if (isNaN(lat) || isNaN(lng)) {
+            alert("Please enter valid latitude and longitude coordinates.");
+            return;
+        }
+        
+        // Pan the map to the new coordinates
+        setMarker({ lat, lng });
+        if (map) {
+            map.panTo({ lat, lng });
+        }
+    
+        // Open the popup
         setShowPopup(true);
     };
 
