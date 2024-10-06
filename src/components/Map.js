@@ -142,6 +142,9 @@ export default function Map() {
                 </GoogleMap>
             </div>
 
+            {/* Popup Overlay */}
+            {showPopup && <div className="popup-overlay"></div>}
+
             {/* Popup for Notification Settings */}
             {showPopup && (
                 <div className="popup">
@@ -164,7 +167,7 @@ export default function Map() {
                             name="advanceNoticeNumber"
                             value={popupData.advanceNoticeNumber}
                             onChange={handleInputChange}
-                            class={"notification-time-input"}
+                            className="notification-time-input"
                         />
                         <select
                             name="advanceNoticeUnit"
