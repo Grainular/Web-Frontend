@@ -1,4 +1,7 @@
-import Map from "./Map"
+// Web-Frontend/src/components/Homepage.js
+
+import React from 'react';
+import Map from "./Map";
 import '../css/MapStyles.css'; // Custom styles
 
 export default function Homepage() {
@@ -19,7 +22,7 @@ export default function Homepage() {
             </section>
 
             <Map />
-            
+
             <section className="metadata-section bg-gray-100 p-6 mt-8">
                 <h3 className="text-xl font-semibold mb-4">Metadata</h3>
                 <ul>

@@ -1,9 +1,12 @@
+// Web-Frontend/src/components/Map.js
+
 import { GoogleMap, useJsApiLoader, Marker } from "@react-google-maps/api";
 import React, { useState } from "react";
 import '../css/MapStyles.css'; // Custom styles
+import axios from 'axios'; // Install axios using `npm install axios`
 
 const containerStyle = {
-    width: '1510px',
+    width: '100%', // Responsive width
     height: '500px'
 };
 
@@ -37,11 +40,26 @@ export default function Map() {
         mode: 'vegetation', // For Vegetation or Thermal overlay
     });
     const [historicalDates, setHistoricalDates] = useState([]);
+    const [landsatPassInfo, setLandsatPassInfo] = useState(null);
+    const [downloadedScenes, setDownloadedScenes] = useState([]);
 
-    const onMapClick = (e) => {
-        setMarker({ lat: e.latLng.lat(), lng: e.latLng.lng() });
-        setPopupData({ ...popupData, latitude: e.latLng.lat(), longitude: e.latLng.lng() });
-        setShowPopup(true);  // Show the popup when marker is dropped
+    const onMapClick = async (e) => {
+        const lat = e.latLng.lat();
+        const lng = e.latLng.lng();
+        setMarker({ lat, lng });
+        setPopupData({ ...popupData, latitude: lat, longitude: lng });
+        setShowPopup(true);
+
+        // Fetch Landsat pass information
+        try {
+            const response = await axios.post('http://localhost:5000/api/get-landsat-pass', {
+                latitude: lat,
+                longitude: lng
+            });
+            setLandsatPassInfo(response.data);
+        } catch (error) {
+            console.error('Error fetching Landsat pass info:', error);
+        }
     };
 
     const handleInputChange = (e) => {
@@ -49,40 +67,57 @@ export default function Map() {
         setPopupData({ ...popupData, [name]: value });
     };
 
-    const handleSubmit = () => {
+    const handleSubmit = async () => {
         if (popupData.showHistory) {
             calculateHistoricalDates();
         }
-        // overlayImages();  // TODO: Overlay Vegetation or Thermal images based on user choice
+
+        // Download Landsat data based on user input
+        try {
+            const response = await axios.post('http://127.0.0.1:5000/api/download-landsat', {
+                latitude: parseFloat(popupData.latitude),
+                longitude: parseFloat(popupData.longitude),
+                start_date: popupData.selectedDate || '2022-01-01',
+                end_date: '2022-12-31', // You can make this dynamic
+                max_cloud_cover: 10 // You can also make this dynamic
+            });
+            setDownloadedScenes(response.data.downloaded_scenes);
+        } catch (error) {
+            console.error('Error downloading Landsat data:', error);
+        }
+
         setShowPopup(false);  // Close popup after submit
     };
-
-    // const overlayImages = () => {
-    //     const bounds = new window.google.maps.LatLngBounds(
-    //         new window.google.maps.LatLng(popupData.latitude - 0.05, popupData.longitude - 0.05),
-    //         new window.google.maps.LatLng(popupData.latitude + 0.05, popupData.longitude + 0.05)
-    //     );
-    //     const imageSrc = popupData.mode === 'vegetation' ? 'src\assets\images\LC08_L1TP_007029_20241004_20241004_02_RT.jpg' : 'src\assets\images\LC09_L1TP_007029_20240926_20240926_02_T1.jpg';
-    //     const historicalOverlay = new window.google.maps.GroundOverlay(imageSrc, bounds);
-    //     historicalOverlay.setMap(map);
-    // };
 
     const calculateHistoricalDates = () => {
         const dates = [];
         const startDate = new Date();
         let selectedDate = new Date(popupData.selectedDate);
 
-        // TODO: Update this so that it calculates the historical dates based on the last time LANDSAT passed over the selected point. 
+        // Calculate historical dates based on LANDSAT cycle (16 days)
         while (selectedDate <= startDate) {
             dates.push(selectedDate.toDateString());
-            selectedDate.setDate(selectedDate.getDate() + 16);  // LANDSAT cycle
+            selectedDate.setDate(selectedDate.getDate() + 16);
         }
         setHistoricalDates(dates);
     };
 
-    const handleLatLongSubmit = () => {
-        setMarker({ lat: parseFloat(popupData.latitude), lng: parseFloat(popupData.longitude) });
+    const handleLatLongSubmit = async () => {
+        const lat = parseFloat(popupData.latitude);
+        const lng = parseFloat(popupData.longitude);
+        setMarker({ lat, lng });
         setShowPopup(true);
+
+        // Fetch Landsat pass information
+        try {
+            const response = await axios.post('http://127.0.0.1:5000/api/get-landsat-pass', {
+                latitude: lat,
+                longitude: lng
+            });
+            setLandsatPassInfo(response.data);
+        } catch (error) {
+            console.error('Error fetching Landsat pass info:', error);
+        }
     };
 
     return isLoaded ? (
@@ -133,7 +168,7 @@ export default function Map() {
             <div className="map-wrapper">
                 <GoogleMap
                     mapContainerStyle={containerStyle}
-                    center={center}
+                    center={marker || center}
                     zoom={13}
                     onClick={onMapClick}
                     onLoad={setMap}
@@ -187,6 +222,7 @@ export default function Map() {
                     <select name="provider" value={popupData.provider} onChange={handleInputChange}>
                         <option value="Verizon">Verizon</option>
                         <option value="AT&T">AT&T</option>
+                        {/* Add more providers as needed */}
                     </select>
 
                     <label>Phone Number</label>
@@ -208,6 +244,29 @@ export default function Map() {
                     )}
 
                     <button className="submit-btn" onClick={handleSubmit}>Submit</button>
+                </div>
+            )}
+
+            {/* Display Landsat Pass Information */}
+            {landsatPassInfo && (
+                <div className="landsat-pass-info">
+                    <h3>Landsat Pass Information</h3>
+                    <p><strong>Path:</strong> {landsatPassInfo.path}</p>
+                    <p><strong>Row:</strong> {landsatPassInfo.row}</p>
+                    <p><strong>Next Landsat 8 Pass:</strong> {landsatPassInfo.soonest_landsat_8}</p>
+                    <p><strong>Next Landsat 9 Pass:</strong> {landsatPassInfo.soonest_landsat_9}</p>
+                </div>
+            )}
+
+            {/* Display Downloaded Scenes */}
+            {downloadedScenes.length > 0 && (
+                <div className="downloaded-scenes">
+                    <h3>Downloaded Scenes</h3>
+                    <ul>
+                        {downloadedScenes.map((scene, index) => (
+                            <li key={index}>{scene}</li>
+                        ))}
+                    </ul>
                 </div>
             )}
         </div>
