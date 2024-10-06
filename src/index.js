@@ -4,7 +4,7 @@ import './index.css';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Header from "./components/Header";
 import Homepage from './components/Homepage';
-import Example from './components/Example';
+import About from './components/About';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 
@@ -21,7 +21,7 @@ root.render(
         <Header />
         <Routes>
           <Route path="/" element={<Homepage />} />
-          <Route path="example" element={<Example />} />
+          <Route path="about" element={<About />} />
         </Routes>
       </BrowserRouter>
     </div>

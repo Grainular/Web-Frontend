@@ -11,7 +11,7 @@ export default function Header() {
             </div>
             <div className="flex items-center flex-shrink-0 text-white mr-6 justify-between space-x-6">
                 <MenuButton path="/" text="Homepage" />
-                <MenuButton path="Example" text="Example" />
+                <MenuButton path="About" text="About" />
             </div>
         </nav>
     );
