@@ -158,12 +158,13 @@ export default function Map() {
 
                     {/* Notification Time (Similar to Google Calendar) */}
                     <label>Notification Time</label>
-                    <div className="notification-time-input">
+                    <div className="notification-time-container">
                         <input
                             type="number"
                             name="advanceNoticeNumber"
                             value={popupData.advanceNoticeNumber}
                             onChange={handleInputChange}
+                            class={"notification-time-input"}
                         />
                         <select
                             name="advanceNoticeUnit"
