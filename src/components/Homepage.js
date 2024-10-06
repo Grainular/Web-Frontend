@@ -1,27 +1,36 @@
-import Map from "./Map" 
+import Map from "./Map";
+import "../css/HomepageStyles.css";
 
 export default function Homepage() {
     return (
         <div>
-            <section className="hero-section bg-blue-500 text-white text-center py-16">
-                <h1 className="text-4xl font-bold mb-4">Track LANDSAT Imagery for Your Farm</h1>
-                <p className="text-lg">Get notified when LANDSAT satellites pass over your area, and access detailed satellite imagery tailored for agriculture.</p>
+            {/* Hero Section */}
+            <section className="hero-section bg-main-green text-white text-center py-16">
+                <h1 className="text-4xl font-bold mb-4 text-homepage-brown">
+                    Stay Notified When LANDSAT Passes Overhead
+                </h1>
+                <p className="text-lg text-menu-green">
+                    Receive alerts and access satellite imagery when LANDSAT satellites pass over your chosen location.
+                </p>
             </section>
 
-            <section className="how-to-use bg-white text-gray-700 py-8">
+            {/* How to Use Section */}
+            <section className="how-to-use bg-white text-main-green py-8">
                 <div className="max-w-4xl mx-auto">
                     <h2 className="text-2xl font-semibold mb-4">How to Use</h2>
                     <p className="mb-6">
-                        To get started, drop a pin on the location where you'd like to receive satellite imagery or enter your desired coordinates. Customize your notification settings to stay updated on the next LANDSAT pass.
+                        Drop a pin on the location where you'd like to track LANDSAT passes or enter your coordinates directly. Set your notification preferences to stay informed on the next satellite pass.
                     </p>
                 </div>
             </section>
 
+            {/* Map Component */}
             <Map />
-            
-            <section className="metadata-section bg-gray-100 p-6 mt-8">
-                <h3 className="text-xl font-semibold mb-4">Metadata</h3>
-                <ul>
+
+            {/* Metadata Section */}
+            <section className="metadata-section bg-light-brown p-6 mt-8 text-main-green">
+                <h3 className="text-xl font-semibold mb-4 text-logo-brown">Metadata</h3>
+                <ul className="list-disc pl-5">
                     <li><strong>Acquisition Satellite:</strong> LANDSAT 8</li>
                     <li><strong>Date:</strong> Oct 5, 2024</li>
                     <li><strong>Time:</strong> 10:32 AM UTC</li>
@@ -32,11 +41,11 @@ export default function Homepage() {
                 </ul>
             </section>
 
+            {/* Chart Section */}
             <section className="chart-section bg-white p-6 mt-8">
-                <h3 className="text-xl font-semibold mb-4">Chart</h3>
+                <h3 className="text-xl font-semibold mb-4 text-logo-brown">Chart</h3>
                 {/* Chart rendering goes here */}
             </section>
-
         </div>
     );
 }
