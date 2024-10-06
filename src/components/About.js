@@ -2,13 +2,13 @@
 import React from 'react';
 import ImageProcessor from './ImageProcessor';
 
-function Example() {
+function About() {
   return (
     <div>
-      <h2>Image Processor</h2>
-      <ImageProcessor />
+      <h2>TODO: About</h2>
+      {/* <ImageProcessor /> */}
     </div>
   );
 }
 
-export default Example;
+export default About;

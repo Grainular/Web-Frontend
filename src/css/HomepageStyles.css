@@ -1,0 +1,51 @@
+:root {
+    --main-green: #4E6C50;
+    --menu-green: #DAD7CD;
+    --homepage-brown: #f5d6bc;
+    --dark-brown: #dbaa82;
+}
+
+/* Hero Section */
+.hero-section {
+    background-color: var(--main-green);
+}
+
+.hero-section h1 {
+    color: var(--logo-brown);
+}
+
+.hero-section p {
+    color: var(--menu-green);
+}
+
+/* How to Use Section */
+.how-to-use {
+    background-color: white;
+}
+
+.how-to-use h2 {
+    color: var(--dark-brown);
+}
+
+.how-to-use p {
+    color: black;
+}
+
+/* Metadata Section */
+.metadata-section {
+    background-color: var(--light-brown);
+    color: var(--main-green);
+}
+
+.metadata-section h3 {
+    color: var(--logo-brown);
+}
+
+.metadata-section ul {
+    color: var(--main-green);
+}
+
+/* Chart Section */
+.chart-section h3 {
+    color: var(--logo-brown);
+}

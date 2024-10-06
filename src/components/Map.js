@@ -1,6 +1,6 @@
 import { GoogleMap, useJsApiLoader, Marker } from "@react-google-maps/api";
 import React, { useState } from "react";
-import '../css/MapStyles.css'; // Custom styles
+import '../css/MapStyles.css';
 
 const containerStyle = {
     width: '1510px',
@@ -103,7 +103,7 @@ export default function Map() {
                     value={popupData.longitude}
                     onChange={handleInputChange}
                 />
-                <button className="latlong-submit-btn" onClick={handleLatLongSubmit}>Submit</button>
+                <button className="latlong-submit-btn" onClick={handleLatLongSubmit}>Add Notification</button>
             </div>
 
             {/* Notification Bar */}
@@ -142,6 +142,9 @@ export default function Map() {
                 </GoogleMap>
             </div>
 
+            {/* Popup Overlay */}
+            {showPopup && <div className="popup-overlay"></div>}
+
             {/* Popup for Notification Settings */}
             {showPopup && (
                 <div className="popup">
@@ -158,12 +161,13 @@ export default function Map() {
 
                     {/* Notification Time (Similar to Google Calendar) */}
                     <label>Notification Time</label>
-                    <div className="notification-time-input">
+                    <div className="notification-time-container">
                         <input
                             type="number"
                             name="advanceNoticeNumber"
                             value={popupData.advanceNoticeNumber}
                             onChange={handleInputChange}
+                            className="notification-time-input"
                         />
                         <select
                             name="advanceNoticeUnit"
@@ -206,7 +210,7 @@ export default function Map() {
                             <input type="date" name="selectedDate" onChange={handleInputChange} />
                         </div>
                     )}
-
+                    <br></br>
                     <button className="submit-btn" onClick={handleSubmit}>Submit</button>
                 </div>
             )}

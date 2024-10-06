@@ -1,0 +1,28 @@
+:root {
+    --main-green: #4E6C50;
+    --menu-green: #DAD7CD;
+    --menu-hover-green: #A3B18A;
+    --logo-brown: #e8bd97;
+}
+
+nav {
+    background-color: var(--main-green);
+}
+
+.text-logo-brown {
+    color: var(--logo-brown);
+}
+
+.text-menu-green {
+    color: var(--menu-green);
+}
+
+.text-menu-hover-green {
+    color: var(--menu-hover-green);
+}
+
+/* Link hover effect */
+a:hover {
+    color: var(--menu-hover-green);
+    transition: color 0.2s ease;
+}
